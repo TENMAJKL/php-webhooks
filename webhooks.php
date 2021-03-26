@@ -5,13 +5,23 @@ class webhook
     function __construct($url)
     {
         $this->url = $url;
-        $this->data = array();
-        $this->data["embeds"] = array();
+        $this->data = [];
+        $this->data["embeds"] = [];
     }
 
     function set_content($content)
     {
         $this->data["content"] =  $content;
+    }
+
+    function set_name($name)
+    {
+        $this->data["username"] = $name;
+    }
+
+    function set_avatar($avatar)
+    {
+        $this->data["avatar_url"] = $avatar;
     }
 
     function set_embed($title, $description, $color)
@@ -23,6 +33,31 @@ class webhook
     function embed_field($embed, $name, $value)
     {
         array_push($this->data["embeds"][$embed]["fields"], ["name" => $name, "value" => $value]);
+    }
+
+    function embed_author($embed, $author, $icon)
+    {
+        $this->data["embeds"][$embed]["author"] = ["name" => $author, "icon_url" => $icon];
+    }
+
+    function embed_image($embed, $image)
+    {
+        $this->data["embeds"][$embed]["image"] = ["url" => $image];    
+    }
+
+    function embed_thumbnail($embed, $image)
+    {
+        $this->data["embeds"][$embed]["thumbnail"] = ["url" => $image];
+    }
+    
+    function embed_footer($embed, $text, $icon)
+    {
+         $this->data["embeds"][$embed]["footer"] = ["text" => $text, "icon_url" => $icon];
+    }
+
+    function embed_timestamp($embed, $time)
+    {
+        $this->data["embeds"][$embed]["timestamp"] = $time;
     }
 
     function send()
