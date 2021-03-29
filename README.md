@@ -48,3 +48,16 @@ method->`embed_timestamp(embed, time)`-temp\
 To send just use this method\
 `send()`
 
+
+# Examples
+```php
+include "webhooks.php"
+
+$hook = new webhook("example-url")
+
+$hook->set_embed("Announcement", "php is good", 0x0000ff) //this embed has number 0
+
+$hook->embed_field(0, "Iam", "Haphpy man")
+
+$hook->send()
+```
